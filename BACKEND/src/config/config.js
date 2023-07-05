@@ -5,7 +5,7 @@ export default {
 
     port:process.env.PORT,
     mongo:{
-        uri:process.env.MONGODB_HOST
+        uri:"mongodb+srv://arjun:S8yAiO8MNMOhD6yA@cluster0.pa5obeh.mongodb.net/Hirex"
     },
  ACESS_TOKEN_SCERET:process.env.ACESS_TOKEN_SCERET,
  REFRESH_TOKEN_SECRET:process.env.REFRESH_TOKEN_SECRET,
