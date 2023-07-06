@@ -1,1 +1,1 @@
-export const baseUrl = "http://hirex.socialc/api/v1/admin"
+export const baseUrl = "https://hirex.socialc/api/v1/admin"
