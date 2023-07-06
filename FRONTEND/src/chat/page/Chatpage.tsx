@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Box, Stack, Grid, Container, TextField, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import Footer from '../../USER/components/Footer';
 import Background from '../../USER/components/Background';
 import Conversation from '../components/Conversation';
@@ -7,7 +7,7 @@ import Chatbox from '../components/Chatbox';
 import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import chatAPI from '../utils/axios';
-import {Socket, io} from 'socket.io-client';
+import { io} from 'socket.io-client';
 
 type RootState = {
     recruiter: {
@@ -32,13 +32,14 @@ type RootState = {
       };
   };
 
-  interface Chat {
-    id: any;
+  type Chat = {
+    id: string;
     _id: string;
-    members: any;
+    members: any[];
     createdAt: string;
     updatedAt: string;
-  }
+  };
+  
   
  
 
@@ -71,9 +72,9 @@ function Chatpage() {
     
 
     const [chats, setchats] = useState<Chat[]>([]);
-    const[currentchat,setcurrentchat]=useState<any>(null)
-    const [sendMessage, setSendMessage] = useState<any>(null);
-    const [receiveMessage, setReceiveMessage] = useState<any>(null); 
+    const[currentchat,setcurrentchat]=useState<unknown>(null)
+    const [sendMessage, setSendMessage] = useState<unknown>(null);
+    const [receiveMessage, setReceiveMessage] = useState<unknown>(null); 
     const [onlineUsers, setOnlineUsers] = useState<any>([]);
     const socket:any=useRef()
     
@@ -130,7 +131,7 @@ function Chatpage() {
     
       }, [Id]);
 
-      const checkOnlineStatus = (chat: never) => {
+      const checkOnlineStatus = (chat: { id?: string; _id?: string; members: any; createdAt?: string; updatedAt?: string; }) => {
         const chatMember = chat.members.find((member: string | null) => member !== Id);
         const online = onlineUsers.find((user: { userId: any; }) => user.userId === chatMember);
         return online ? true : false;

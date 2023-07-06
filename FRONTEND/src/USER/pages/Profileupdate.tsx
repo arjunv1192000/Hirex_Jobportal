@@ -1,9 +1,8 @@
-import React from 'react'
+
 import Header from '../components/Header';
 import Background from '../components/Background';
-import { Box, Stack, Grid } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import Sidebarprofile from '../components/Sidebarprofile';
-import Profileform from '../components/Profileform';
 import Footer from '../components/Footer'
 import Profileformupdate from '../components/profileformupdation';
 import { useTheme } from '@mui/material/styles';

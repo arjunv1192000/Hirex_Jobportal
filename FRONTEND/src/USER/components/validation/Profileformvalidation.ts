@@ -15,7 +15,7 @@ interface MyFormData {
   image: FileList | null;
 }
 
-const validationSchema: ObjectSchema<MyFormData, Yup.AnyObject, any, ''> = Yup.object().shape({
+const ValidationSchema: ObjectSchema<MyFormData, Yup.AnyObject, any, ''> = Yup.object().shape({
   name: Yup.string()
     .trim()
     .matches(/^[A-Za-z\s]+$/, 'Name cannot contain numbers')
@@ -58,11 +58,11 @@ const validationSchema: ObjectSchema<MyFormData, Yup.AnyObject, any, ''> = Yup.o
 
   cv: Yup.mixed()
     .nullable()
-    .required('CV is required'),
+    .required('CV is required') as Yup.MixedSchema<FileList | null>,
 
   image: Yup.mixed()
     .nullable()
-    .required('Image is required'),
+    .required('Image is required') as Yup.MixedSchema<FileList | null>,
 });
 
-export default validationSchema;
+export default ValidationSchema;

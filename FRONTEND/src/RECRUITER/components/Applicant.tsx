@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography, MenuItem,Select } from '@mui/material'
+import { Box, Stack, Button, Avatar, Typography, MenuItem,Select } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person';
 import recruiterapi from '../utils/axios.ts';
 import toast, { Toaster } from 'react-hot-toast';
@@ -41,7 +41,7 @@ type Props = {
    
 };
 
-const Applicant: React.FC<Props> = ({ userId, name, email, phone, location, jobRole, language, about, education, image, cv,jobId }) => {
+const Applicant: React.FC<Props> = ({ userId, name, email, phone, location, jobRole, about,  image, cv,jobId }) => {
     const navigate = useNavigate();
     const recruiterdata = useSelector((state: RootState) => state.recruiter.value);
     const HR=recruiterdata.name

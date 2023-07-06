@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography } from '@mui/material'
+import { Box, Stack,  Button, Avatar, Typography } from '@mui/material'
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -35,7 +35,7 @@ type Props = {
     
   };
 
-const Savedjobs: React.FC<Props>=({jobId,recruiterId,jobTitle,jobType,location,salary,date,about,image,companyname})=> {
+const Savedjobs: React.FC<Props>=({jobId,jobTitle,salary,about,image,companyname})=> {
     const navigate=useNavigate()
     const userdata = useSelector((state: RootState) => state.user.value);
   

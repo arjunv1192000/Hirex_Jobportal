@@ -1,8 +1,8 @@
-import React from 'react'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SideBar from '../components/Sidebar'
-import { Box, Stack, Grid, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import Applicant from '../components/Applicant'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';

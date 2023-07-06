@@ -1,8 +1,7 @@
-import React from 'react'
-import { Box, Stack, Typography, Avatar, Divider, Grid } from '@mui/material'
-import Rightbar from './Rightbar'
+
+import { Box, Stack , Grid } from '@mui/material'
 import SideBar from './SideBar'
-import Jobposts from './Jobposts'
+
 
 
 function Jobview() {

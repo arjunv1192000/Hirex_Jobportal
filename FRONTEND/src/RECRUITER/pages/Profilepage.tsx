@@ -1,7 +1,6 @@
-import React from 'react'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import profile from '../components/Profile'
 import Background from '../components/Background'
 import { Box, Stack } from '@mui/material'
 import Profile from '../components/Profile'

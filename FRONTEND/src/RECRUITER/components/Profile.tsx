@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography } from '@mui/material'
+
+import { Box, Stack, Button, Typography } from '@mui/material'
 import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
 import recruiterapi from '../utils/axios.ts';

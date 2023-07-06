@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, Grid, Typography } from '@mui/material'
+import { Box, Stack, Grid } from '@mui/material'
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 import Jobpost from '../components/Jobpost';
@@ -56,12 +56,12 @@ function Landingpage() {
         getalljobs()
 
 
-    }, [currentPage]);
+    }, [currentPage, jobsPerPage]);
 
     const theme = useTheme();
     const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const handlePageChange = (event: any, page: React.SetStateAction<number>) => {
+    const handlePageChange = (_event: any, page: React.SetStateAction<number>) => {
         setCurrentPage(page);
     };
 
@@ -84,7 +84,7 @@ function Landingpage() {
                             <SideBar />
                             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ padding: 1,marginLeft:100 }} >
                                 {alljobs.map((job) => (
-                                    <Jobpost id={job.recruiterId} jobtitle={job.jobTitle} jobType={job.jobType} location={job.location} date={job.date} salary={job.salary} jobId={job._id} image={job.recruiterId.image} companyname={job.recruiterId.companyname} />
+                                    <Jobpost id={job.recruiterId._id} jobtitle={job.jobTitle} jobType={job.jobType} location={job.location} date={job.date} salary={job.salary} jobId={job._id} image={job.recruiterId.image} companyname={job.recruiterId.companyname} recruiterId={''} />
                                 ))}
 
 

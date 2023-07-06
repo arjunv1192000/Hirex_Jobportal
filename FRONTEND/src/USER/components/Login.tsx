@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import GoogleIcon from '@mui/icons-material/Google';
-import { Stack } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import { useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
@@ -121,7 +120,7 @@ export default function SignIn() {
                     scope="openid profile email"
                     discoveryDocs="claims_supported"
                     access_type="offline"
-                    onResolve={({ provider, data }: googleinfo) => {
+                    onResolve={({ data }: googleinfo) => {
                         console.log(data);
                         
 

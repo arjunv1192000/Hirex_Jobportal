@@ -1,7 +1,6 @@
-import React from 'react'
+
 import { Box,List } from '@mui/material'
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 function Sidebarjobs() {

@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography } from '@mui/material';
+import { Box, TextField, Button, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import ValidationSchema from './validation/profileformvalidation.ts';
 import { useNavigate } from 'react-router-dom';
 import Axios from '../../axios/axios.ts';
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import recruiterapi from '../utils/axios.ts';
 import { useEffect, useState } from 'react';
 
@@ -41,7 +40,6 @@ interface MyFormData {
 
 function Profileupdationform() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const recruiterData = useSelector((state: RootState) => state.recruiter.value);
     const id = recruiterData.id;
     const [Profile, setProfile] = useState<any>(null);
@@ -164,11 +162,7 @@ function Profileupdationform() {
                 encType="multipart/form-data"
             >
                 <div>
-                    <Avatar id="img"
-                        alt=""
-                        src=""
-                        sx={{ width: 80, height: 80, marginTop: 4, marginLeft: 4 }}
-                    />
+                   
                     <Typography marginLeft={3}>Upload your profile image</Typography>
                     <TextField
                         margin="normal"

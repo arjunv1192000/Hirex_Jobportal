@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Box, Stack, Grid, Container, TextField, Typography, MenuItem, Avatar } from '@mui/material';
+import { Box, Stack, Typography, Avatar } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import recruiterapi from '../../RECRUITER/utils/axios';
 import axios from '../../USER/utils/axios'
 import messageAPI from '../utils/messageaxios';
-import { format } from 'timeago.js'
+import { TDate, format } from 'timeago.js'
 import InputEmoji from 'react-input-emoji';
 
 
@@ -27,7 +27,7 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
 
       setmessage([...message, receivedMessage]);
     }
-  }, [receivedMessage]);
+  }, [data?._id, message, receivedMessage]);
 
 
   const fetchUserData = () => {
@@ -103,7 +103,9 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
     setnewmessage(newmessage)
 
   }
+  
   useEffect(() => {
+    
     scroll.current?.scrollIntoView({ behavior: 'smooth' });
   }, [message]);
 
@@ -144,7 +146,8 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
 
 
   }
-  const scroll = useRef();
+  const scroll = useRef<HTMLDivElement | null>(null);
+
 
 
   return (
@@ -177,10 +180,10 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
           zIndex: 1,
           backgroundColor: '#f6fbff'
         }}>
-          {message.map((message) => {
-            const isCurrentUserMessage = message?.senderId === currentuser.recId || message?.senderId === currentuser.useId;
+          {message.map((msg: { senderId: any; id: React.Key | null | undefined; message: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; createdAt: TDate; }) => {
+            const isCurrentUserMessage = msg?.senderId === currentuser.recId || msg?.senderId === currentuser.useId;
             return (
-              <Box key={message.id} sx={{ display: 'flex', justifyContent: isCurrentUserMessage ? 'flex-end' : 'flex-start' }}  >
+              <Box key={msg.id} sx={{ display: 'flex', justifyContent: isCurrentUserMessage ? 'flex-end' : 'flex-start' }}  >
                 <Box ref={scroll}
                   sx={{
                     backgroundColor: isCurrentUserMessage ? '#5A96E3' : '#C1ECE4',
@@ -193,8 +196,8 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
                     maxWidth: '75%',
                   }}
                 >
-                  <Typography sx={{ fontSize: 18 }} >{message.message}</Typography>
-                  <Typography sx={{ fontSize: 10 }}>{format(message.createdAt)}</Typography>
+                  <Typography sx={{ fontSize: 18 }} >{msg.message}</Typography>
+                  <Typography sx={{ fontSize: 10 }}>{format(msg.createdAt)}</Typography>
                 </Box>
               </Box>
             );

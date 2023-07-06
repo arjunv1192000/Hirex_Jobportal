@@ -1,9 +1,7 @@
 import React from 'react'
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography } from '@mui/material'
+import { Box, Stack, Button, Avatar, Typography } from '@mui/material'
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
@@ -22,7 +20,7 @@ type Props = {
 };
 
 
-const Userjobs: React.FC<Props> = ({ jobId, recruiterId, jobTitle, jobType, location, salary, date, about, image, companyname, status }) => {
+const Userjobs: React.FC<Props> = ({  jobTitle, salary, about, image, companyname, status }) => {
     const navigate=useNavigate()
 
     return (

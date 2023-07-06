@@ -33,9 +33,9 @@ const ValidationSchema: ObjectSchema<MyFormData, Yup.AnyObject, any, ""> = Yup.o
         .trim()
         .required('Education is required'),
 
-    image: Yup.mixed()
+        image: Yup.mixed()
         .nullable()
-        .required('Image is required'),
+        .required('Image is required') as Yup.MixedSchema<FileList | null>,
 });
 
 export default ValidationSchema;

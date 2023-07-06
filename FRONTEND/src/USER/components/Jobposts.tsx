@@ -45,7 +45,7 @@ type Props = {
 
 };
 
-const Jobpost2: React.FC<Props> = ({ jobId, id, jobtitle, jobType, location, salary, date, about, image, companyname, expiring, skills }) => {
+const Jobpost2: React.FC<Props> = ({ jobId, jobtitle, jobType, location, salary, date, about, image, companyname, expiring, skills }) => {
   const navigate = useNavigate()
   const userdata = useSelector((state: RootState) => state.user.value);
   const [saved, setSaved] = useState(false);

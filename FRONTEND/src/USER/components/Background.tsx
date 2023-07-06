@@ -1,6 +1,6 @@
-import React from 'react'
-import { Box, Stack, Typography } from '@mui/material'
-import Header from './Header'
+
+import { Box, Typography } from '@mui/material'
+
 
 
 

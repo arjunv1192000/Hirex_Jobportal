@@ -47,7 +47,7 @@ type Props = {
     skills: [string]
 };
 
-const Jobpostdetails: React.FC<Props> = ({ id, jobtitle, jobType, location, date, salary, jobId, about, image, companyname, jobTiming, jobLevel, qualification, essentialKnowledge, experience, address, opening, expiring, skills }) => {
+const Jobpostdetails: React.FC<Props> = ({  jobtitle, jobType, location, date, salary, jobId, about, image, companyname, jobTiming, jobLevel, qualification, essentialKnowledge, experience, address, opening, expiring, skills }) => {
 
 
     const navigate = useNavigate()

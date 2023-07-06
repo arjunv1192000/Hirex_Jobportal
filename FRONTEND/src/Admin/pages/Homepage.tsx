@@ -1,7 +1,7 @@
-import React from 'react'
+
 import Header from '../components/Header';
 import Background from '../components/Background';
-import { Box, Stack, Grid } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import Footer from '../components/Footer'
 import Userdata from '../components/Userdata';
 import { useEffect, useState } from 'react';

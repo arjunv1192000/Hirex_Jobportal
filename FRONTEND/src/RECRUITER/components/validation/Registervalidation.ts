@@ -1,4 +1,3 @@
-import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ObjectSchema } from 'yup';
 
@@ -34,9 +33,8 @@ const validationSchema: ObjectSchema<MyFormData> = Yup.object().shape({
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('password')], 'Passwords must match').nullable()
         .required('Confirm password is required'),
-    image:Yup.mixed()
-    .required('Image is required'),
-
-
+    image: Yup.mixed()
+        .required('Image is required') as Yup.MixedSchema<FileList | null>,
 });
+
 export default validationSchema;

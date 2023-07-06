@@ -1,7 +1,6 @@
 
-import React, { useState } from 'react';
+
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -28,8 +27,6 @@ interface FormValues {
 }
 
 function SignUp() {
-  const [error, setError] = useState(null);
-  const [isSent, setSent] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -110,7 +107,7 @@ function SignUp() {
             scope="openid profile email"
             discoveryDocs="claims_supported"
             access_type="offline"
-            onResolve={({ provider, data }: any) => {
+            onResolve={({  data }: any) => {
               const body = {
                 name: data.name,
                 email: data.email,

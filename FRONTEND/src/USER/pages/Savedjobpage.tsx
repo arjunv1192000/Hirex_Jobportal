@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Header from '../components/Header';
 import Background from '../components/Background';
 import { Box, Stack, Typography } from '@mui/material';
@@ -25,7 +25,6 @@ type RootState = {
 
 type Jobs = {
   _id: string;
-  recruiterId: string;
   jobTitle: string;
   jobType: string;
   jobTiming: string;
@@ -41,6 +40,13 @@ type Jobs = {
   experience: string;
   address: string;
   opening: string;
+  recruiterId: {
+    image: string;
+    companyname: string;
+    recruiterId: string;
+    _id: string;
+
+  }
 };
 
 function Myjobs() {

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 type RootState = {
-    recruiter: {
+    recruiter:{
       value: {
         id: string | null;
         companyname:string|null;

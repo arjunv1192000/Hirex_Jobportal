@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Box, Stack, Typography, Avatar, Divider } from '@mui/material'
 
 function Footer() {

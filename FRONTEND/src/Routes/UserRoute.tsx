@@ -1,4 +1,3 @@
-import React from 'react'
 
 import {  Routes, Route, } from 'react-router-dom';
 import { Signup,Login,Jobdetail,Jobs,Myjob,Profile,Addprofile,Landingpage,Savedjobs,Updateprofile,Chat}from '../USER/pages/index'

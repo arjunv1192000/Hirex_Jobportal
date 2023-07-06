@@ -1,6 +1,6 @@
-import React from 'react'
+
 import { Routes, Route, } from 'react-router-dom';
-import { Homepage, Login, Recruiterdata, RecruiterProfile, Userprofile, RecruiterJobs, Dashboard } from '../Admin/pages/index'
+import { Homepage, Login, Recruiterdata, Userprofile, RecruiterJobs, Dashboard } from '../Admin/pages/index'
 import Pagenotfound from '../commonpage/Pagenotfound';
 
 
@@ -14,7 +14,6 @@ function AdminRoutes() {
       <Route path='user' element={<Homepage />} />
       <Route path='login' element={<Login />} />
       <Route path='recruitersdata' element={<Recruiterdata />} />
-      <Route path='redruiterprofile' element={<RecruiterProfile />} />
       <Route path='userprofile' element={<Userprofile />} />
       <Route path='recruiterjobs/:recruiterId' element={<RecruiterJobs />} />
       <Route path='*' element={<Pagenotfound />} />

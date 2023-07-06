@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Header from '../components/Header';
 import Background from '../components/Background';
 import { Box, Stack, Grid } from '@mui/material'
@@ -7,6 +7,8 @@ import Jobdatas from '../components/Jobdatas';
 import axios from '../utils/axios'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+
 
 
 type jobs = {
@@ -70,7 +72,7 @@ function Joblistingpage() {
                         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ padding: 1, }} >
 
                             {jobs.map((job) => (
-                                <Jobdatas id={job.recruiterId} jobtitle={job.jobTitle} jobType={job.jobType} location={job.location} date={job.date} salary={job.salary} jobId={job._id} image={job.recruiterId.image} companyname={job.recruiterId.companyname} expiring={job.expiring} fetchData={fetchData} />
+                                <Jobdatas id={job.recruiterId._id} jobtitle={job.jobTitle} jobType={job.jobType} location={job.location} date={job.date} salary={job.salary} jobId={job._id} image={job.recruiterId.image} companyname={job.recruiterId.companyname} expiring={job.expiring} fetchData={fetchData} recruiterId={''} />
                             ))}
                            
 

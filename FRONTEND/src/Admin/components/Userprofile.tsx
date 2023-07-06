@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Box, Stack, Typography } from '@mui/material'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import SchoolIcon from '@mui/icons-material/School';

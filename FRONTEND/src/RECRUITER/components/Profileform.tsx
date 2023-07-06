@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography } from '@mui/material';
+import { Box, TextField, Button, Avatar, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import ValidationSchema from './validation/profileformvalidation.ts';
 import { useNavigate } from 'react-router-dom';
 import Axios from '../../axios/axios.ts';
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import recruiterapi from '../utils/axios.ts';
 
 
@@ -39,7 +38,6 @@ interface MyFormData {
 
 function Profileform() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const recruiterData = useSelector((state: RootState) => state.recruiter.value);
     const id = recruiterData.id;
 

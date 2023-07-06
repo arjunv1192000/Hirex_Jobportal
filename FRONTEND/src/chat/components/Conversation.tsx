@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { Box, List, Stack, Typography, Avatar } from '@mui/material'
-import chatAPI from '../utils/axios';
-import { useSelector } from 'react-redux';
+import  { useState, useEffect } from 'react'
+import { Box, Stack, Typography, Avatar } from '@mui/material'
 import recruiterapi from '../../RECRUITER/utils/axios';
 import axios from '../../USER/utils/axios'
 
+type UserData={
+  name:string;
+  image:string;
+
+
+}
+type RecruiterData={
+  name:string;
+  image:string;
+}
+
 function Conversation({ data, currentuser, onClick, online }:any) {
-  const [userdata, setuserdata] = useState(null)
-  const [recruiterdata, setrecruiterdata] = useState(null)
+  const [userdata, setuserdata] = useState<UserData | null>(null)
+  const [recruiterdata, setrecruiterdata] = useState<RecruiterData | null>(null)
 
   const fetchuserData = () => {
     const chatAuthId = currentuser.recId ? currentuser.recId : currentuser.useId;

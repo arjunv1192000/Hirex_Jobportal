@@ -5,7 +5,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import CurrencyRupeeOutlinedIcon from '@mui/icons-material/CurrencyRupeeOutlined';
-import Avatar from '@mui/material/Avatar';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from '../utils/axios'
 
@@ -25,7 +24,7 @@ type Props = {
 
 };
 
-const Jobdatas: React.FC<Props> = ({ jobId, id, jobtitle, jobType, location, salary, date ,fetchData,expiring }) => {
+const Jobdatas: React.FC<Props> = ({ jobId, jobtitle, jobType, location, salary, date ,fetchData,expiring }) => {
 
     const currentDate = new Date();
     const pastDate = new Date(date);

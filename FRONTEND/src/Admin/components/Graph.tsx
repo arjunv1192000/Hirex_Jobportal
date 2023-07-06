@@ -1,6 +1,6 @@
-import React from 'react'
+
 import { BarChart } from '@mui/x-charts/BarChart';
-import { Box, Stack, Grid } from '@mui/material'
+import { Box} from '@mui/material'
 
 interface CompanyData {
   companyname: string;

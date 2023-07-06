@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material'
+
+import { Box, TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material'
 import { useFormik } from 'formik';
 import validationSchema from './validation/Jobcreationvalidation';
 import { useSelector } from "react-redux";
@@ -415,7 +415,7 @@ function Creationform() {
                         disableCloseOnSelect
                         getOptionLabel={(option) => option}
                         value={formik.values.skills}
-                        onChange={(event, value) => formik.setFieldValue('skills', value)}
+                        onChange={(_event, value) => formik.setFieldValue('skills', value)}
                         renderOption={(props, option, { selected }) => (
                             <li {...props}>
                                 <Checkbox

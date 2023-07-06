@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box, Stack, TextField, Button, Grid, Avatar, Typography } from '@mui/material';
+import { Box, TextField, Button, Avatar, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import validationSchema from './validation/Profileformvalidation';
 import { useNavigate } from 'react-router-dom';
   import Axios from '../../axios/axios.ts';
 import { useSelector } from "react-redux";
 import axios from '../utils/axios.ts'
-import { useDispatch } from "react-redux";
+
 
 
 
@@ -44,7 +44,6 @@ interface MyFormData {
 
 function Profileform() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const userdata = useSelector((state: RootState) => state.user.value);
   console.log(userdata,"profile");
   

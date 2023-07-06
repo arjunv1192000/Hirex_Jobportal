@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { Box, Stack, Grid, Container, TextField, Typography, MenuItem } from '@mui/material';
 import Footer from '../components/Footer';
@@ -70,9 +70,9 @@ function Jobspage() {
     };
 
     getJobData();
-  }, [currentPage, query, filter, filterlocation]);
+  }, [currentPage, query, filter, filterlocation, jobsPerPage]);
 
-  const handlePageChange = (event: any, page: number) => {
+  const handlePageChange = (_event: any, page: number) => {
     setCurrentPage(page);
   };
 

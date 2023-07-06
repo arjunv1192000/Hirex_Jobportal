@@ -2,14 +2,15 @@ import { Box, styled } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import ErrorIcon from '@mui/icons-material/Error';
 import Button from '@mui/material/Button';
-import PropTypes from 'prop-types';
+
 
 interface ErrorFallbackProps {
   error: Error;
   resetErrorBoundary: () => void;
 }
 
-const FallbackContainer = styled('div')(({ theme }) => ({
+// eslint-disable-next-line no-empty-pattern
+const FallbackContainer = styled('div')(({ }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

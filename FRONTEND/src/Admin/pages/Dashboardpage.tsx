@@ -1,7 +1,7 @@
-import React from 'react'
+
 import Header from '../components/Header';
 import Background from '../components/Background';
-import { Box, Stack, Grid } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import Footer from '../components/Footer'
 import Dashboard from '../components/Dashboard';
 import Graph from '../components/Graph';
@@ -13,10 +13,14 @@ type datas = {
   recruiter:number;
   jobs:number;
 };
+type CompanyData = {
+  companyname: string;
+  jobCount: number;
+};
 
 function Dashboardpage() {
   const [data, setdata] = useState<datas>({ user: 0, recruiter: 0, jobs: 0 });
-  const[graphdata,setgraphdata]=useState([{}])
+  const [graphdata, setgraphdata] = useState<CompanyData[]>([]);
   
   
 
