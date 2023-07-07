@@ -13,7 +13,7 @@ import messageRouter from "./message.js"
 const  routes=( app,express)=>{
     app.use('/api/v1/user',authRouter(express))
     app.use('/api/v1/recruiter',authRouterRecruiter(express))
-    app.use('/service',commonservice(express))
+    app.use('/api/v1/service',commonservice(express))
     app.use('/api/v1/user/profile',profileRouter(express))
     app.use('/api/v1/recruiter/jobs',recruiterjobs(express))
     app.use('/api/v1/user/jobs',jobRouter(express))
