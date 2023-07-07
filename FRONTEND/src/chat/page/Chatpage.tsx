@@ -81,7 +81,7 @@ function Chatpage() {
 
     useEffect(() => {
       
-      socket.current= io('http://hirex.social');
+      socket.current= io('https://hirex.social');
       socket.current?.emit('new-user-add', Id);
       socket.current?.on('get-users', (users: any) => {
         setOnlineUsers(users);
