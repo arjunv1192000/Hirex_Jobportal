@@ -107,7 +107,7 @@ function SignUp() {
             scope="openid profile email"
             discoveryDocs="claims_supported"
             access_type="offline"
-            onResolve={({  data }: any) => {
+            onResolve={({provider,data }: any) => {
               const body = {
                 name: data.name,
                 email: data.email,

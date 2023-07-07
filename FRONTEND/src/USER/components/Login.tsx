@@ -120,7 +120,7 @@ export default function SignIn() {
                     scope="openid profile email"
                     discoveryDocs="claims_supported"
                     access_type="offline"
-                    onResolve={({ data }: googleinfo) => {
+                    onResolve={({provider,data }: googleinfo) => {
                         console.log(data);
                         
 
