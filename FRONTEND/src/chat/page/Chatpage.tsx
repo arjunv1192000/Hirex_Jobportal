@@ -105,11 +105,13 @@ function Chatpage() {
 
 
     useEffect(()=>{
-      socket.current.on('receive-message', (data: React.SetStateAction<null>) => {
+      socket.current.on('receive-message', (data:any) => {
+        console.log("hellooooo");
+        
         setReceiveMessage(data);
       });
 
-    },[])
+    },[receiveMessage])
     
    
     

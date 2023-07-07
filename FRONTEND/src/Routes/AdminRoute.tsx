@@ -1,26 +1,26 @@
 
-import { Routes, Route, } from 'react-router-dom';
-import { Homepage, Login, Recruiterdata, Userprofile, RecruiterJobs, Dashboard } from '../Admin/pages/index'
-import Pagenotfound from '../commonpage/Pagenotfound';
+  import { Routes, Route, } from 'react-router-dom';
+  import { Homepage, Login, Recruiterdata, Userprofile, RecruiterJobs, Dashboard } from '../Admin/pages/index'
+  import Pagenotfound from '../commonpage/Pagenotfound';
 
 
 
 
-function AdminRoutes() {
+  function AdminRoutes() {
 
-  return (
-    <Routes>
-      <Route path='dashboard' element={<Dashboard />} />
-      <Route path='user' element={<Homepage />} />
-      <Route path='login' element={<Login />} />
-      <Route path='recruitersdata' element={<Recruiterdata />} />
-      <Route path='userprofile' element={<Userprofile />} />
-      <Route path='recruiterjobs/:recruiterId' element={<RecruiterJobs />} />
-      <Route path='*' element={<Pagenotfound />} />
+    return (
+      <Routes>
+        <Route path='dashboard' element={<Dashboard />} />
+        <Route path='user' element={<Homepage />} />
+        <Route path='login' element={<Login />} />
+        <Route path='recruitersdata' element={<Recruiterdata />} />
+        <Route path='userprofile' element={<Userprofile />} />
+        <Route path='recruiterjobs/:recruiterId' element={<RecruiterJobs />} />
+        <Route path='*' element={<Pagenotfound />} />
 
-    </Routes>
+      </Routes>
 
-  )
-}
+    )
+  }
 
-export default AdminRoutes
+  export default AdminRoutes

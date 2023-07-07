@@ -181,7 +181,7 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
           zIndex: 1,
           backgroundColor: '#f6fbff'
         }}>
-          {message.map((msg:any) => {
+          {message.map((msg: { senderId: any; id: React.Key | null | undefined; message: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; createdAt: TDate; }) => {
             const isCurrentUserMessage = msg?.senderId === currentuser.recId || msg?.senderId === currentuser.useId;
             return (
               <Box key={msg.id} sx={{ display: 'flex', justifyContent: isCurrentUserMessage ? 'flex-end' : 'flex-start' }}  >
