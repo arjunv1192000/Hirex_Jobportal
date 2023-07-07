@@ -108,7 +108,7 @@ function Updatejob() {
                 jobId: jobs._id
 
             }
-            console.log(body);
+            console.log(body,"haii");
 
 
 

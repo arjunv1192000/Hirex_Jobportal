@@ -125,6 +125,7 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
 
     try {
       await messageAPI.post('/', messages).then((response) => {
+       console.log(response.data.addmessage,"addd");
        
 
         setmessage([...message, response.data.addmessage]);
