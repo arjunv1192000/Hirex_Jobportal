@@ -12,7 +12,7 @@ const commonserviceController=()=>{
     }
     const createemail=(req,res)=>{
         const {email,username,recruiter,companyname,status,image}=req.body
-        console.log(status);
+        console.log(status,"dfsfsjdfjsdgsdgbfdsksf");
         nodemaileremailsending(email,username,recruiter,companyname,status,image).then((response)=>{
             
             res.json({response})
