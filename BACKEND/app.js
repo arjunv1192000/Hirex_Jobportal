@@ -10,7 +10,7 @@ import socketConfig from './src/framework/WebSocket/socket.js';
 const app=express()
 const server=http.createServer(app)
 const io = new Server(server,{cors:{
-    origin:"https://127.0.0.1:5173",
+    origin:"https://hirex.social",
     methods:["GET","POST"]
 }});
 
