@@ -23,8 +23,8 @@ socketConfig(io);
 
 
 
-app.all('*',(req,res,next)=>{
-    next(new Error('not found'))
-})
+// app.all('*',(req,res,next)=>{
+//     next(new Error('not found'))
+// })
 
 serverConfig(server,config).startServer()
