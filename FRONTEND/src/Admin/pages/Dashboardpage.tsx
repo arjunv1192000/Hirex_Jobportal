@@ -28,7 +28,7 @@ function Dashboardpage() {
 
     axios.get('/dashboarddata')
         .then((response) => {
-            console.log(response.data);
+            console.log(response.data,"alldata");
             setdata(response.data);
         })
         .catch((response) => {
@@ -39,7 +39,7 @@ const fetchGraphData = () => {
 
   axios.get('/graphdata')
       .then((response) => {
-          console.log(response.data.jobdata);
+          console.log(response.data.jobdata,"graphdata");
           setgraphdata(response.data?.jobdata);
       })
       .catch((response) => {
