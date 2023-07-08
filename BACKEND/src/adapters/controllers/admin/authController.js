@@ -136,7 +136,6 @@ const authController = (adminAuthRepositoryInt,adminAuthRepositoryImp,authServic
     
      }
      const graphdata=(req,res)=>{
-        console.log("haiiiiiiiiii");
             Getallgraphdata(recruiterdbrepository).then((response)=>{
                 console.log(response);
                 res.json(response)

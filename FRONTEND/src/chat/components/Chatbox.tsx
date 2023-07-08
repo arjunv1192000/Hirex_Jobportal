@@ -27,7 +27,7 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
 
       setmessage([...message, receivedMessage]);
     }
-  }, [data?._id, message, receivedMessage]);
+  }, [receivedMessage]);
 
 
   const fetchUserData = () => {
