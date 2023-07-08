@@ -8,9 +8,12 @@ interface CompanyData {
 }
 
 function Graph({ data }: { data: CompanyData[] }) {
+  if (!data) {
+   
+    return null;
+  }
 
-  console.log(data);
-  
+ 
   const companyNames = data?.map((item) => item.companyname);
   const jobCounts = data?.map((item) => item.jobCount);
   console.log(companyNames);
