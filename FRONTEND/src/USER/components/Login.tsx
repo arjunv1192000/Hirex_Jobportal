@@ -116,7 +116,7 @@ export default function SignIn() {
                     Member login
                 </Typography>
                 <LoginSocialGoogle
-                    client_id={"18104366941-i704jcmbs4sg1926l716a85iqogl0se2.apps.googleusercontent.com"}
+                    client_id={"18104366941-36u5re7qibu39h2t1uqmq0khlkq0kevs.apps.googleusercontent.com"}
                     scope="openid profile email"
                     discoveryDocs="claims_supported"
                     access_type="offline"

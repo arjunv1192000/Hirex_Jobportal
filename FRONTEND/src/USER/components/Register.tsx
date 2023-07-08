@@ -103,7 +103,7 @@ function SignUp() {
         </Typography>
         <Box>
           <LoginSocialGoogle
-            client_id={"your-google-client-id"}
+            client_id={"18104366941-36u5re7qibu39h2t1uqmq0khlkq0kevs.apps.googleusercontent.com"}
             scope="openid profile email"
             discoveryDocs="claims_supported"
             access_type="offline"
