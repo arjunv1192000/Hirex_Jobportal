@@ -52,6 +52,7 @@ function Updatejob() {
     useEffect(() => {
         recruiterapi.get('/jobs/getsinglejob?id=' + jobid).then((response) => {
 
+            console.log(response.data.job,"updatejobsssss");
             setjob(response.data.job)
 
 
