@@ -42,13 +42,15 @@ type Props = {
   companyname: string;
   expiring: boolean;
   skills: [string];
+  applicants:[string];
 
 };
 
-const Jobpost2: React.FC<Props> = ({ jobId, jobtitle, jobType, location, salary, date, about, image, companyname, expiring, skills }) => {
+const Jobpost2: React.FC<Props> = ({ jobId, jobtitle, jobType, location, salary, date, about, image, companyname, expiring, skills,applicants }) => {
   const navigate = useNavigate()
   const userdata = useSelector((state: RootState) => state.user.value);
   const [saved, setSaved] = useState(false);
+  const isApplied = applicants.includes(userdata.id || '');
   const handleApplyClick = async () => {
     try {
 
@@ -182,7 +184,16 @@ const Jobpost2: React.FC<Props> = ({ jobId, jobtitle, jobType, location, salary,
           </ListItemButton>
 
 
-          {expiring ? (<Typography sx={{ marginRight: 5, marginTop: 1, color: 'red' }}>job expired</Typography>) : (<Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, backgroundColor: "#3C6FF5", marginRight: 1 }} onClick={handleApplyClick}>Apply</Button>)}
+          {/* {expiring ? (<Typography sx={{ marginRight: 5, marginTop: 1, color: 'red' }}>job expired</Typography>) : (<Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, backgroundColor: "#3C6FF5", marginRight: 1 }} onClick={handleApplyClick}>Apply</Button>)} */}
+          {expiring ? (
+          <Typography sx={{ marginRight: 5, marginTop: 1, color: 'red' }}>Job expired</Typography>
+        ) : isApplied ? (
+          <Typography sx={{ marginRight: 5, marginTop: 1, color: 'green' }}>Applied</Typography>
+        ) : (
+          <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, backgroundColor: '#3C6FF5', marginRight: 1 }} onClick={handleApplyClick}>
+            Apply
+          </Button>
+        )}
 
         </Stack>
 

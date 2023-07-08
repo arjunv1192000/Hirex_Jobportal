@@ -28,6 +28,7 @@ type Jobs = {
     _id: string;
 
   }
+  applicants:[string];
   expiring: boolean;
   skills: [string]
 };
@@ -178,6 +179,7 @@ function Jobspage() {
                     companyname={job.recruiterId.companyname}
                     expiring={job.expiring}
                     skills={job.skills}
+                    applicants={job.applicants}
                   />
                 ))
               )}
