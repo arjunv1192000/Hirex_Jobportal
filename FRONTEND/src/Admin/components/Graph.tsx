@@ -8,7 +8,7 @@ interface CompanyData {
 }
 
 function Graph({ data }: { data: CompanyData[] }) {
-  if (!data) {
+  if (data.length == 0) {
    
     return null;
   }

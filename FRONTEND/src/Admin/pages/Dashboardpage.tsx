@@ -9,75 +9,84 @@ import { useEffect, useState } from 'react';
 import axios from '../utils/axios'
 
 type datas = {
-  user:number;
-  recruiter:number;
-  jobs:number;
+  user: number;
+  recruiter: number;
+  jobs: number;
 };
 type CompanyData = {
   companyname: string;
   jobCount: number;
 };
 
+
+
+
 function Dashboardpage() {
   const [data, setdata] = useState<datas>({ user: 0, recruiter: 0, jobs: 0 });
   const [graphdata, setgraphdata] = useState<CompanyData[]>([]);
-  
-  
+
+
 
   const fetchData = () => {
 
     axios.get('/dashboarddata')
-        .then((response) => {
-            console.log(response.data,"alldata");
-            setdata(response.data);
-        })
-        .catch((response) => {
-            console.error(response.message);
-        });
-}
-const fetchGraphData = () => {
-
-  axios.get('/graphdata')
       .then((response) => {
-          console.log(response.data.jobdata,"graphdata");
-          setgraphdata(response.data?.jobdata);
+        console.log(response.data, "alldata");
+        setdata(response.data);
       })
       .catch((response) => {
-          console.error(response.message);
+        console.error(response.message);
       });
-}
-useEffect(() => {
-  fetchGraphData()
+  }
+  const fetchGraphData = () => {
 
-}, []);
+    axios.get('/graphdata')
+      .then((response) => {
+        console.log(response.data, "graphdata");
+        setgraphdata(response.data?.jobdata);
+      })
+      .catch((response) => {
+        console.error(response.message);
+      });
+  }
+  useEffect(() => {
+    fetchGraphData()
 
-useEffect(() => {
+  }, []);
+
+  useEffect(() => {
     fetchData()
 
-}, []);
+  }, []);
+
   return (
 
     <Box >
 
-    <Stack direction={'column'}  >
+      <Stack direction={'column'}  >
         <Header />
         <Background />
 
         <Box sx={{ width: "95%", height: 'auto', borderRadius: 6, backgroundColor: 'white', marginLeft: 5, marginTop: 40, boxShadow: 6, zIndex: 1 }}>
-            <Stack direction={'column'}>
-                <Dashboard user={data.user} recruiter={data.recruiter} jobs={data.jobs}/>
-                <Graph data={graphdata}  />
-               
-            </Stack>
+          <Stack direction={'column'}>
+            <Dashboard user={data.user} recruiter={data.recruiter} jobs={data.jobs} />
+
+            {/* {graphdata.map((e)=>
+
+              <p>{e.companyname}</p>
+            )} */}
+            <Graph data={graphdata} />
+
+          </Stack>
 
         </Box>
 
 
         <Footer />
-    </Stack>
-</Box>
-    
-    
+      </Stack>
+    </Box>
+
+
   )
 }
 
