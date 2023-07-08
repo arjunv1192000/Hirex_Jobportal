@@ -45,16 +45,18 @@ type Props = {
     opening: string;
     expiring: boolean;
     skills: [string]
+    applicants: [string];
 };
 
-const Jobpostdetails: React.FC<Props> = ({  jobtitle, jobType, location, date, salary, jobId, about, image, companyname, jobTiming, jobLevel, qualification, essentialKnowledge, experience, address, opening, expiring, skills }) => {
+const Jobpostdetails: React.FC<Props> = ({ jobtitle, jobType, location, date, salary, jobId, about, image, companyname, jobTiming, jobLevel, qualification, essentialKnowledge, experience, address, opening, expiring, skills, applicants }) => {
 
 
     const navigate = useNavigate()
     const userdata = useSelector((state: RootState) => state.user.value);
     const theme = useTheme();
     const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
-    
+    const isApplied = applicants.includes(userdata.id || '');
+
 
 
     const handleApplyClick = async () => {
@@ -142,7 +144,12 @@ const Jobpostdetails: React.FC<Props> = ({  jobtitle, jobType, location, date, s
                         <Typography marginLeft={3} marginTop={3} fontSize={28} fontWeight={1000}>
                             {jobtitle}
                         </Typography>
-                        {expiring ? " " : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 20, backgroundColor: "#3C6FF5" }} onClick={handleApplyClick} >Apply</Button>}
+                        {/* {expiring ? " " : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 20, backgroundColor: "#3C6FF5" }} onClick={handleApplyClick} >Apply</Button>} */}
+                        {!isApplied && !expiring && (
+                            <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 20, backgroundColor: '#3C6FF5' }} onClick={handleApplyClick}>
+                                Apply
+                            </Button>
+                        )}
 
                     </Stack>
                     <ListItemButton  >
@@ -159,7 +166,7 @@ const Jobpostdetails: React.FC<Props> = ({  jobtitle, jobType, location, date, s
                         </ListItemIcon>
                         <ListItemText primary={timeAgo} />
                     </ListItemButton>
-                    <Stack direction={isMobile?'column' : 'row'} >
+                    <Stack direction={isMobile ? 'column' : 'row'} >
                         <Box sx={{ width: "70%", height: 420, borderRadius: 2, marginLeft: 1, marginTop: 1, backgroundColor: 'white', boxShadow: 6 }}>
                             <Typography variant="h6" margin={2}>Employment Information</Typography>
                             <Stack direction={'row'} spacing={4} >
@@ -304,8 +311,15 @@ const Jobpostdetails: React.FC<Props> = ({  jobtitle, jobType, location, date, s
                         </Typography>
                     ))}
                     <Stack direction={'row'}>
-                        {expiring ? " " : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4, marginBottom: 5 }} onClick={handleApplyClick} >Apply</Button>}
-                        {expiring ? "" : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4, marginBottom: 5 }} onClick={handleSaveClick}>Save</Button>}
+                        {/* {expiring ? " " : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4, marginBottom: 5 }} onClick={handleApplyClick} >Apply</Button>}
+                        {expiring ? "" : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4, marginBottom: 5 }} onClick={handleSaveClick}>Save</Button>} */}
+                        {isApplied ? (
+                            <Typography sx={{ marginRight: 5, marginTop: 1, color: 'green' }}>Applied</Typography>
+                        ) : !expiring ? (
+                            <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: '#3C6FF5', marginLeft: 4, marginBottom: 5 }} onClick={handleApplyClick}>
+                                Apply
+                            </Button>
+                        ) : null}
 
                     </Stack>
 

@@ -26,7 +26,8 @@ type Jobs = {
   address: string;
   opening: string;
   expiring:boolean;
-  skills:[string]
+  skills:[string];
+  applicants:[string];
   recruiterId:{
     image: string;
     companyname: string;
@@ -98,6 +99,7 @@ function Jobdetails() {
             opening={jobs.opening}
             expiring={jobs.expiring}
             skills={jobs.skills}
+            applicants={jobs.applicants}
 
           />
         </Box>
