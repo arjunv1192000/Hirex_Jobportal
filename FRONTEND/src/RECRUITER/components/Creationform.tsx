@@ -248,21 +248,7 @@ function Creationform() {
                         helperText={formik.touched.essentialKnowledge && formik.errors.essentialKnowledge}
 
                     />
-                    {/* <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="Location"
-                        label="Location"
-                        name="location"
-                        autoComplete="Location"
-                        autoFocus
-                        value={formik.values.location}
-                        onChange={formik.handleChange}
-                        error={formik.touched.location && Boolean(formik.errors.location)}
-                        helperText={formik.touched.location && formik.errors.location}
-
-                    /> */}
+                
                     <FormControl fullWidth margin="normal" required error={formik.touched.location && Boolean(formik.errors.location)} sx={{ width: "41%", marginTop: 3, marginLeft: 3,marginRight:3 }}>
                         <InputLabel id="location-label">Location</InputLabel>
                         <Select

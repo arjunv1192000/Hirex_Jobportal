@@ -7,8 +7,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import Autocomplete from '@mui/material/Autocomplete';
+import Checkbox from '@mui/material/Checkbox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 type RootState = {
     recruiter: {
@@ -24,6 +29,7 @@ type RootState = {
 
 
 interface MyFormData {
+    skills: [string];
     jobTitle: string;
     jobType: string;
     jobLevel: string;
@@ -34,6 +40,7 @@ interface MyFormData {
     qualification: string;
     salary: string;
     date: string;
+    enddate:string;
     experience: string;
     address: string;
     opening: string;
@@ -83,6 +90,8 @@ function Updatejob() {
             experience: jobs.experience || '',
             address: jobs.address || '',
             opening: jobs.opening || '',
+            skills:jobs.skills || '',
+            enddate:jobs.enddate || '',
         } as MyFormData,
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -105,6 +114,8 @@ function Updatejob() {
                 experience: values.experience,
                 address: values.address,
                 opening: values.opening,
+                skills:values.skills,
+                enddate:values.enddate,
                 recruiterId: recruiterdata.id,
                 jobId: jobs._id
 
@@ -375,6 +386,65 @@ function Updatejob() {
                         helperText={formik.touched.opening && formik.errors.opening}
 
                     />
+                     <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="enddate"
+                        label="End date"
+                        name='enddate'
+                        autoComplete=""
+                        type='date'
+                        autoFocus
+                        value={formik.values.enddate}
+                        onChange={formik.handleChange}
+                        error={formik.touched.enddate && Boolean(formik.errors.enddate)}
+                        helperText={formik.touched.enddate && formik.errors.enddate}
+
+                    />
+                     <Autocomplete
+                        multiple
+                        id="skills"
+                        options={[
+                            'JavaScript',
+                            'React',
+                            'Node.js',
+                            'HTML',
+                            'CSS',
+                            'Python',
+                        ]}
+                        disableCloseOnSelect
+                        getOptionLabel={(option) => option}
+                        value={formik.values.skills || []} 
+                        onChange={(_event, value) => formik.setFieldValue('skills', value)}
+                        renderOption={(props, option, { selected }) => (
+                            <li {...props}>
+                                <Checkbox
+                                    icon={icon}
+                                    checkedIcon={checkedIcon}
+                                    checked={selected}
+                                />
+                                {option}
+                            </li>
+                        )}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                margin="normal"
+                                fullWidth
+                                id="skills"
+                                label="Skills"
+                                name="skills"
+                                autoComplete="skills"
+                                autoFocus
+                                value={formik.values.skills}
+                                onChange={(event) => formik.setFieldValue('skills', event.target.value)}
+                                error={formik.touched.skills && Boolean(formik.errors.skills)}
+                                helperText={formik.touched.skills && formik.errors.skills}
+                            />
+                        )}
+                    />
+                    
 
 
                 </div>
