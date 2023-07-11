@@ -397,6 +397,40 @@ function Creationform() {
                             'HTML',
                             'CSS',
                             'Python',
+                            'express',
+                            'angular js',
+                            'java',
+                            'solidity',
+                            'mojo',
+                            'dart',
+                            'git',
+                            'AWS',
+                            'RestAPI',
+                            'mongoDB',
+                            'sql',
+                            'software testing',
+                            'Docker',
+                            'micro service',
+                            'redux',
+                            'next js',
+                            'nest js',
+                            'figma',
+                            'responsive design',
+                            'content writer',
+                            'digital marketing',
+                            'Typescript',
+                            'c++',
+                            'c',
+                            'C sharp',
+                            'Devops',
+                            
+
+
+
+
+
+
+
                         ]}
                         disableCloseOnSelect
                         getOptionLabel={(option) => option}
