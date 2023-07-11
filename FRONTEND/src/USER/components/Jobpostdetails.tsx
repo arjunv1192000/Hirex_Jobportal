@@ -134,22 +134,17 @@ const Jobpostdetails: React.FC<Props> = ({ jobtitle, jobType, location, date, sa
     return (
         <Box
             sx={{
-                width: "90%", height: "100%", borderRadius: 2, display: 'flex', marginLeft: 10, marginTop: 1,
+                width: "90%", height: "100%", borderRadius: 2, display: 'flex', marginLeft:isMobile?1: 10, marginTop: 1,
                 flexDirection: "column",
                 alignItems: "center",
+               
             }}>
-            <Box>
+            <Box >
                 <Stack>
-                    <Stack direction={'row'} spacing={120} marginTop={3}  >
-                        <Typography marginLeft={3} marginTop={3} fontSize={28} fontWeight={1000}>
+                    <Stack direction={'row'}  marginTop={3}  marginLeft={isMobile?1:1} >
+                        <Typography marginLeft={1} marginTop={3} fontSize={28} fontWeight={1000}>
                             {jobtitle}
                         </Typography>
-                        {/* {expiring ? " " : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 20, backgroundColor: "#3C6FF5" }} onClick={handleApplyClick} >Apply</Button>} */}
-                        {!isApplied && !expiring && (
-                            <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 20, backgroundColor: '#3C6FF5' }} onClick={handleApplyClick}>
-                                Apply
-                            </Button>
-                        )}
 
                     </Stack>
                     <ListItemButton  >
@@ -167,7 +162,7 @@ const Jobpostdetails: React.FC<Props> = ({ jobtitle, jobType, location, date, sa
                         <ListItemText primary={timeAgo} />
                     </ListItemButton>
                     <Stack direction={isMobile ? 'column' : 'row'} >
-                        <Box sx={{ width: "70%", height: 420, borderRadius: 2, marginLeft: 1, marginTop: 1, backgroundColor: 'white', boxShadow: 6 }}>
+                        <Box sx={{ width:isMobile?"90%" :"70%", height: 420, borderRadius: 2, marginLeft:isMobile?5:1, marginTop: 1, backgroundColor: 'white', boxShadow: 6 }}>
                             <Typography variant="h6" margin={2}>Employment Information</Typography>
                             <Stack direction={'row'} spacing={4} >
                                 <Stack >
@@ -263,7 +258,7 @@ const Jobpostdetails: React.FC<Props> = ({ jobtitle, jobType, location, date, sa
 
 
                         </Box>
-                        <Box sx={{ width: "30%", height: 420, borderRadius: 2, marginLeft: 4, marginTop: 1, backgroundColor: 'white', boxShadow: 6 }}>
+                        <Box sx={{ width:isMobile?"90%": "40%", height: 420, borderRadius: 2, marginLeft:isMobile?5: 4, marginTop: 1, backgroundColor: 'white', boxShadow: 6 }}>
                             <Stack>
                                 <Stack direction={'row'}>
                                     <Box sx={{ width: "30%", height: 100, margin: 1 }}>
@@ -277,7 +272,6 @@ const Jobpostdetails: React.FC<Props> = ({ jobtitle, jobType, location, date, sa
 
                                 </Stack>
                                 <Box sx={{ width: "70%", height: 170, backgroundColor: 'blueviolet', borderRadius: 5, marginTop: 1, marginLeft: 5 }}>
-                                    {/* <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg" alt="Logo" style={{ width: '100%', height: '100%' }} /> */}
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.9510023335224!2d76.31923637498247!3d9.938034990164187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0873e8b17e4e1f%3A0x631726fd9022096b!2sBrototype%20Kochi!5e0!3m2!1sen!2sin!4v1686823328975!5m2!1sen!2sin" style={{ border: 0, width: '100%', height: '100%' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                                 </Box>
 
@@ -289,36 +283,37 @@ const Jobpostdetails: React.FC<Props> = ({ jobtitle, jobType, location, date, sa
 
                     </Stack>
 
-                    <Typography marginLeft={3} marginTop={3} fontSize={18} fontWeight={1000} >
+                    <Typography marginLeft={isMobile?2:3} marginTop={3} fontSize={18} fontWeight={1000} >
                         {jobtitle}
 
                     </Typography>
-                    <Typography marginLeft={3} marginTop={3} fontSize={16} fontWeight={500} width={800}>
+                    <Typography marginLeft={isMobile?2:3} marginTop={3} fontSize={16} fontWeight={500} width={800}>
                         {about}
                     </Typography>
-                    <Typography marginLeft={3} marginTop={3} fontSize={18} fontWeight={1000}>
+                    <Typography marginLeft={isMobile?2:3} marginTop={3} fontSize={18} fontWeight={1000}>
                         EssentialKnowledge
                     </Typography>
-                    <Typography marginLeft={3} marginTop={3} fontSize={16} fontWeight={500} width={800}>
+                    <Typography marginLeft={isMobile?2:3} marginTop={3} fontSize={16} fontWeight={500} width={800}>
                         {essentialKnowledge}
                     </Typography>
-                    <Typography marginLeft={3} marginTop={3} fontSize={18} fontWeight={1000}>
+                    <Typography marginLeft={isMobile?2:3} marginTop={3} fontSize={18} fontWeight={1000}>
                         Skills Required
                     </Typography>
                     {skills.map((skill, index) => (
-                        <Typography key={index} marginLeft={3} marginTop={1} fontSize={14} fontWeight={500}>
+                        <Typography key={index} marginLeft={isMobile?2:3} marginTop={1} fontSize={14} fontWeight={500} marginBottom={2}>
                             {skill}
                         </Typography>
                     ))}
                     <Stack direction={'row'}>
-                        {/* {expiring ? " " : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4, marginBottom: 5 }} onClick={handleApplyClick} >Apply</Button>}
-                        {expiring ? "" : <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4, marginBottom: 5 }} onClick={handleSaveClick}>Save</Button>} */}
                         {isApplied ? (
-                            <Typography sx={{ marginRight: 5, marginTop: 1, color: 'green' }}>Applied</Typography>
+                            <Typography sx={{ marginRight: 5, marginTop: 1, color: 'green', marginBottom:3 }}>Applied</Typography>
                         ) : !expiring ? (
-                            <Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: '#3C6FF5', marginLeft: 4, marginBottom: 5 }} onClick={handleApplyClick}>
-                                Apply
-                            </Button>
+                            <><Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: '#3C6FF5', marginLeft: isMobile ? 30 : 4, marginBottom: 5 }} onClick={handleApplyClick}>
+                                    Apply
+                                </Button><Button variant="contained" sx={{ width: 100, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: '#3C6FF5', marginLeft: isMobile ? 10: 10, marginBottom: 5 }} onClick={handleSaveClick}>
+                                        Save
+                                    </Button></>
+                             
                         ) : null}
 
                     </Stack>

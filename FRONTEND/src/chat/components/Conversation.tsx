@@ -38,7 +38,6 @@ function Conversation({ data, currentuser, onClick, online }:any) {
 
       } else {
         axios.get('/profile/getprofile?id=' + Id).then((response) => {
-
           setuserdata(response.data.profiledata)
 
         }).catch((response) => {

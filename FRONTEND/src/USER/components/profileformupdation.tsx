@@ -48,12 +48,13 @@ function Profileformupdate() {
     const [profile, setprofile] = useState<any>({});
     const userdata = useSelector((state: RootState) => state.user.value);
 
-    
+
     const id = userdata.id
 
     useEffect(() => {
         axios.get('/profile/getprofile?id=' + id).then((response) => {
-            console.log(response.data.profiledata);
+            console.log(response.data.profiledata, "fdfdsfsdfsdf");
+
             setprofile(response.data.profiledata)
 
 
@@ -81,16 +82,24 @@ function Profileformupdate() {
             location: profile.location || '',
             usercv: profile.cv || '',
             userimage: profile.image || '',
+            personalWebsite: profile.personalwebsite || '',
 
         } as MyFormData,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-           
-            
+
+
+
+
             const fileimg = values.image;
             const filecv = values.cv;
 
-            console.log(fileimg, filecv);
+            if (!filecv) {
+                formik.setFieldError('cv', 'CV is required');
+            }
+            if (!fileimg) {
+                formik.setFieldError('image', 'Image is required');
+            }
 
             try {
                 const [imageResponse, cvResponse] = await Promise.all([
@@ -121,12 +130,8 @@ function Profileformupdate() {
 
                 const [imageUploadResponse, cvUploadResponse] = await Promise.all([imageUpload, cvUpload]);
 
-                console.log('Image and CV uploaded successfully:', imageUploadResponse, cvUploadResponse);
-
                 const userimage = imageUrl.split('?')[0];
                 const usercv = cvUrl.split('?')[0];
-                console.log(userimage);
-                console.log(usercv);
                 formik.setFieldValue('usercv', usercv);
                 formik.setFieldValue('userimage', userimage);
 
@@ -145,7 +150,6 @@ function Profileformupdate() {
                     userId: userdata.id,
                 };
 
-                console.log(body, "newbody");
 
                 const response = await axios.post('/profile/updateprofile', body);
 
@@ -213,8 +217,9 @@ function Profileformupdate() {
                         type="file"
                         autoFocus
                         onChange={handleImageChange}
-                        error={formik.touched.image && Boolean(formik.errors.image)}
-                        helperText={formik.touched.image && formik.errors.image}
+                        error={(formik.touched.image || formik.submitCount > 0) && Boolean(formik.errors.image)}
+                        helperText={(formik.touched.image || formik.submitCount > 0) && formik.errors.image}
+                        onBlur={formik.handleBlur}
                     />
                     <TextField
                         margin="normal"
@@ -360,7 +365,6 @@ function Profileformupdate() {
                         helperText={formik.touched.location && formik.errors.location}
 
                     />
-                    {/* Rest of the form fields */}
                     <TextField
                         margin="normal"
                         required
@@ -369,10 +373,13 @@ function Profileformupdate() {
                         type="file"
                         autoComplete="cv"
                         autoFocus
-                        onChange={handleCVChange} // Handle file selection
-                        error={formik.touched.cv && Boolean(formik.errors.cv)}
-                        helperText={formik.touched.cv && formik.errors.cv}
+                        onChange={handleCVChange}
+                        error={(formik.touched.cv || formik.submitCount > 0) && Boolean(formik.errors.cv)}
+                        helperText={(formik.touched.cv || formik.submitCount > 0) && formik.errors.cv}
+                        onBlur={formik.handleBlur}
                     />
+                    {/* Rest of the form fields */}
+
                     {/* Submit button */}
                     <Button
                         type="submit"

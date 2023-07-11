@@ -43,9 +43,7 @@ const Jobpost: React.FC<Props>=({jobId,jobtitle,jobType,location,salary,date,ima
   const navigate=useNavigate()
 
   const userdata = useSelector((state: RootState) => state.user.value);
-  console.log(userdata, "profilesetting")
     const  userId=userdata.id
-    console.log(userId);
     
  const[user,setuser]=useState<any>()
 
@@ -54,7 +52,6 @@ const Jobpost: React.FC<Props>=({jobId,jobtitle,jobType,location,salary,date,ima
       axios.get('/getuserdata?id=' + userId)
         .then((response) => {
           setuser(response.data.userdata)
-          console.log(response.data.userdata);
           
         
           

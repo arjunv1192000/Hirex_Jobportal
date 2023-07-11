@@ -31,7 +31,6 @@ function Profile() {
 
     useEffect(() => {
         recruiterapi.get('/profile/getprofile?id=' + id).then((response) => {
-            console.log(response.data.profiledata);
             setProfile(response.data.profiledata)
 
 

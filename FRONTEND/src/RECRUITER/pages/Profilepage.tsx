@@ -13,7 +13,9 @@ function Profilepage() {
     <Stack>
       <Header/>
       <Background/>
-      <Box sx={{ width: "60%", height: 'auto', borderRadius: 6, backgroundColor: 'white', marginLeft: 40, marginTop:40, boxShadow: 6, zIndex: 1 }}>
+      <Box sx={{ width: "60%", height: 'auto', borderRadius: 6, backgroundColor: 'white', marginLeft: 40, marginTop:40, boxShadow: 6, zIndex: 1, '@media (max-width: 800px)': {
+              width: 700, marginTop: 30, marginLeft: 2
+            }, }}>
       
        
       <Profile/>

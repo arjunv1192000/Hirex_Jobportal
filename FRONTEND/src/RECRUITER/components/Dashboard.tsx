@@ -15,6 +15,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import recruiterapi from '../utils/axios.ts';
 import toast, { Toaster } from 'react-hot-toast';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type RootState = {
   recruiter: {
@@ -41,6 +43,8 @@ type Props = {
 const Dashboard: React.FC<Props> = ({ jobid, jobtitle, about, salary ,expiring,fetchData}) => {
   const navigate = useNavigate();
   const recruiterdata = useSelector((state: RootState) => state.recruiter.value);
+  const theme = useTheme();
+  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
   const handleUnlistClick = async () => {
     try {
 
@@ -62,12 +66,12 @@ const Dashboard: React.FC<Props> = ({ jobid, jobtitle, about, salary ,expiring,f
 
 
   return (
-    <Box sx={{ width: '90%', height: 'auto', borderRadius: 2, boxShadow: 6, backgroundColor: 'white', marginTop: 1 }}>
+    <Box sx={{ width: '90%', height: 'auto', borderRadius: 2, boxShadow: 6, backgroundColor: 'white', marginTop:isMobile?2:1,}}>
       <Stack>
         <Stack direction={'row'}>
           <Avatar
             alt=""
-            src={recruiterdata.image}
+            src={recruiterdata?.image}
             sx={{ width: 50, height: 50, marginTop: 4, marginLeft: 3 }}
           />
           <Typography marginLeft={3} marginTop={7} fontSize={21} fontWeight={500}>

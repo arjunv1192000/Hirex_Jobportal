@@ -73,7 +73,7 @@ function Jobdetails() {
             height: 'auto',
             borderRadius: 6,
             backgroundColor: 'white',
-            marginLeft: isMobile?6: 5,
+            marginLeft: isMobile?2: 5,
             marginTop: isMobile?30: 40,
             boxShadow: 6,
             zIndex: 1,

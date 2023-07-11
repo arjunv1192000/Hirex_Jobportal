@@ -26,7 +26,6 @@ function RecruiterDataspage() {
 
     axios.get('/getrecruiterdetails')
       .then((response) => {
-        console.log(response.data.data);
         setrecruiter(response.data.data);
       })
       .catch((response) => {

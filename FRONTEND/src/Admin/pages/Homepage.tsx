@@ -25,7 +25,6 @@ function Homepage() {
 
         axios.get('/getuserdetails')
             .then((response) => {
-                console.log(response.data.userdata);
                 setuser(response.data.userdata);
             })
             .catch((response) => {

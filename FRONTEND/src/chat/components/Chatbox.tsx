@@ -7,10 +7,17 @@ import axios from '../../USER/utils/axios'
 import messageAPI from '../utils/messageaxios';
 import { TDate, format } from 'timeago.js'
 import InputEmoji from 'react-input-emoji';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 
 function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
+
+
+
+  const theme = useTheme();
+  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
 
 
@@ -125,9 +132,6 @@ function Chatbox({ data, currentuser, setSendMessage,receivedMessage }:any) {
 
     try {
       await messageAPI.post('/', messages).then((response) => {
-       console.log(response.data.addmessage,"addd");
-       
-
         setmessage([...message, response.data.addmessage]);
         setnewmessage('');
       })

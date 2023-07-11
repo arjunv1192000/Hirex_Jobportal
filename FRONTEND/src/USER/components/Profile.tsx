@@ -35,7 +35,6 @@ function Profile() {
 
     useEffect(() => {
         axios.get('/profile/getprofile?id=' + id).then((response) => {
-            console.log(response.data.profiledata);
             setprofile(response.data.profiledata)
 
 
@@ -116,12 +115,6 @@ function Profile() {
                     <Typography variant="body1">Language :</Typography>
                     <Typography variant="body1">  {profile?.language} </Typography>
                 </Stack>
-                {/* <Stack direction="row" alignItems="center" gap={3} margin={3}>
-                     <SchoolIcon/>
-                    
-                    <Typography variant="body1">Personal website:</Typography>
-                    <Typography variant="body1">wwww.sdsdsd.com</Typography>
-                </Stack> */}
                 <Button variant="contained" sx={{ width: 200, height: 40, borderRadius: 2, marginTop: 5, backgroundColor: "#3C6FF5", marginLeft: 4 }} onClick={() => navigate('/user/updateprofile')}>Update Profile</Button>
 
             </Stack>

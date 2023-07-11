@@ -1,5 +1,3 @@
-
-
 import { useFormik } from 'formik';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -75,7 +73,6 @@ function SignUp() {
             navigate("/login");
           });
       } catch (error) {
-        console.error('Error during registration:', error);
         toast.error('Failed to register. Please try again later.');
       }
     },

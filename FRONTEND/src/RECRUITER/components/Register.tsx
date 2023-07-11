@@ -65,7 +65,7 @@ export default function SignIn() {
                 });
                 console.log('Image and CV uploaded successfully:', imageUpload);
                 const userimage = imgurl.split('?')[0];
-                console.log(userimage);
+              
               
                 formik.setFieldValue('userimage', userimage);
                
@@ -79,7 +79,7 @@ export default function SignIn() {
                 image:userimage
                 
             };
-            console.log(body);
+           
 
 
             recruiterapi.post("/signup", body).then((response) => {
@@ -115,7 +115,7 @@ export default function SignIn() {
                 console.error('Error uploading image and CV:', error);
             }
 
-               console.log(values.userimage,"shdshdhdhdhdhdhndj");
+        
               
                
 

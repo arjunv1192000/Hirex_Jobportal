@@ -57,14 +57,17 @@ function Profileform() {
         validationSchema: ValidationSchema,
         onSubmit: async (values) => {
             const fileimg = values.image;
+            if (!fileimg) {
+                formik.setFieldError('image', 'Image is required');
+            }
 
-            console.log(fileimg);
+
 
             try {
                 const imageResponse = await Axios.get('/s3service');
                 const imageUrl = imageResponse.data.response;
 
-                console.log(imageUrl);
+
 
                 const imageUploadResponse = await fetch(imageUrl, {
                     method: 'PUT',
@@ -74,7 +77,6 @@ function Profileform() {
                     },
                 });
 
-                console.log('Image and CV uploaded successfully:', imageUploadResponse);
 
                 const userimage = imageUrl.split('?')[0];
                 console.log(userimage);
@@ -90,11 +92,10 @@ function Profileform() {
                     recruiterId: id,
                 };
 
-                console.log(body);
 
                 const response = await recruiterapi.post('/profile/addprofile', body);
 
-                console.log(response);
+
 
                 if (response.data.status === true) {
                     navigate('/recruiter/profile');
@@ -153,8 +154,9 @@ function Profileform() {
                         type="file"
                         autoFocus
                         onChange={handleImageChange}
-                        error={formik.touched.image && Boolean(formik.errors.image)}
-                        helperText={formik.touched.image && formik.errors.image}
+                        error={(formik.touched.image || formik.submitCount > 0) && Boolean(formik.errors.image)}
+                        helperText={(formik.touched.image || formik.submitCount > 0) && formik.errors.image}
+                        onBlur={formik.handleBlur}
                     />
                     <TextField
                         margin="normal"

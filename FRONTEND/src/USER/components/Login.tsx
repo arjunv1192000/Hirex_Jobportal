@@ -47,7 +47,7 @@ export default function SignIn() {
         } as FormValues,
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values,"ssss");
+           
 
 
 
@@ -57,10 +57,8 @@ export default function SignIn() {
                 password: values.password,
 
             };
-            console.log(body,"ddddddd");
 
             axios.post("/login", body).then((response) => {
-                console.log(response,"qqqqqqqq");
 
                 if (response.data.status == true) {
                     localStorage.setItem('access_token_user', response.data.AccessToken)

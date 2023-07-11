@@ -32,9 +32,8 @@ function SideBar() {
   const navigate = useNavigate();
 
   const userdata = useSelector((state: RootState) => state.user.value);
-  console.log(userdata, "profilesetting")
   const userId = userdata.id
-  console.log(userId);
+  
 
   const [user, setuser] = useState<any>()
 
@@ -101,7 +100,6 @@ function SideBar() {
 
 
           </Typography>
-          {/* {user ? (<Button variant="contained" sx={{ width: 200, borderRadius: 2, alignContent: 'center', marginLeft: 6, marginTop: 3, backgroundColor: "#3C6FF5" }} onClick={() => navigate('/user/' + (user.profile ? 'updateprofile' : 'addprofile'))} >{user?.profile ? ' Update profile' : 'Complete profile'}</Button>) : (<Button variant="contained" sx={{ width: 200, borderRadius: 2, alignContent: 'center', marginLeft: 6, marginTop: 3, backgroundColor: "#3C6FF5" }} onClick={() => navigate('/user/signup')} >Signup</Button>)} */}
           {user ? (
   <Button
     variant="contained"

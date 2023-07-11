@@ -43,7 +43,6 @@ const Savedjobs: React.FC<Props>=({jobId,jobTitle,salary,about,image,companyname
     const handleApplyClick = async () => {
         try {
             const applyjob = await axios.post('/jobs/applyinSaved', { UserId: userdata.id, JobId: jobId });
-            console.log(applyjob.data);
             if (applyjob.data.status == true) {
 
                 toast.success('job applied Successfully')

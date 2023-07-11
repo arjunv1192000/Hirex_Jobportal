@@ -70,8 +70,7 @@ function Creationform() {
         } as MyFormData,
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values,);
-
+           
 
 
 
@@ -94,10 +93,9 @@ function Creationform() {
                 skills: values.skills,
 
             }
-            console.log(body);
+
 
             recruiterapi.post("/jobs/createjob", body).then((response) => {
-                console.log(response);
 
                 if (response.data.status == true) {
 
@@ -133,8 +131,10 @@ function Creationform() {
                 width: "70%",
                 height: 'auto',
                 borderRadius: 2,
-                margin: 3,
                 boxShadow: 6,
+                '@media (max-width: 700px)': {
+                    width: 900, marginTop: 30,marginLeft:10
+                  },
 
 
 
@@ -143,7 +143,7 @@ function Creationform() {
             <Typography margin={5} fontSize={28} fontWeight={1000}>
                 Create Job
             </Typography>
-            <Box component="form" sx={{ '& .MuiTextField-root': { m: 3, width: '50ch' }, margin: 6, }} noValidate autoComplete="off" onSubmit={formik.handleSubmit} >
+            <Box component="form" sx={{ '& .MuiTextField-root': { m: 3, width: '60ch' } }} noValidate autoComplete="off" onSubmit={formik.handleSubmit} >
 
                 <div>
                     <TextField

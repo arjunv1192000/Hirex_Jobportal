@@ -59,7 +59,7 @@ function Updatejob() {
     useEffect(() => {
         recruiterapi.get('/jobs/getsinglejob?id=' + jobid).then((response) => {
 
-            console.log(response.data.job,"updatejobsssss");
+           
             setjob(response.data.job)
 
 
@@ -120,8 +120,7 @@ function Updatejob() {
                 jobId: jobs._id
 
             }
-            console.log(body,"haii");
-
+          
 
 
             recruiterapi.post("/jobs/updatejob", body).then((response) => {
@@ -169,6 +168,9 @@ function Updatejob() {
                 borderRadius: 2,
                 margin: 3,
                 boxShadow: 6,
+                '@media (max-width: 800px)': {
+                    width: 800, marginTop: 30, marginLeft: 2
+                  }, 
 
 
 

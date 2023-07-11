@@ -16,8 +16,7 @@ function Graph({ data }: { data: CompanyData[] }) {
  
   const companyNames = data?.map((item) => item.companyname);
   const jobCounts = data?.map((item) => item.jobCount);
-  console.log(companyNames);
-  console.log(jobCounts);
+ 
   
   
 

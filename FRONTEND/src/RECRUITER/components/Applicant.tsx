@@ -8,6 +8,9 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import Axios from '../../axios/axios.ts';
 import { useSelector } from 'react-redux';
 import chatAPI from '../../chat/utils/axios.ts';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 
 
@@ -47,6 +50,8 @@ const Applicant: React.FC<Props> = ({ userId, name, email, phone, location, jobR
     const HR=recruiterdata.name
     const company=recruiterdata.companyname
     const logo=recruiterdata.image
+    const theme = useTheme();
+    const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
    
     const [status, setStatus] = React.useState('Pending');
@@ -117,8 +122,8 @@ const Applicant: React.FC<Props> = ({ userId, name, email, phone, location, jobR
     
 
     return (
-        <Box sx={{ width: "90%", height: 350, borderRadius: 2, boxShadow: 6, backgroundColor: 'white', marginTop: 1 }}>
-            <Stack direction={'row'} spacing={4}>
+        <Box sx={{ width:isMobile?"100%": "90%", height: 350, borderRadius: 2, boxShadow: 6, backgroundColor: 'white', marginTop: 1,marginLeft:isMobile?2:0 }}>
+            <Stack direction={'row'} spacing={isMobile?0: 4}>
                 <Avatar
                     alt=""
                     src={image}
@@ -150,7 +155,7 @@ const Applicant: React.FC<Props> = ({ userId, name, email, phone, location, jobR
                     <Typography marginLeft={3} marginTop={5} fontSize={21} fontWeight={500}>
                         About Me
                     </Typography>
-                    <Typography marginLeft={3} fontSize={18} fontWeight={300} marginTop={2} width={400}>
+                    <Typography marginLeft={3} fontSize={18} fontWeight={300} marginTop={2} width={300} height={40}>
                         {about}
                     </Typography>
                     
@@ -161,7 +166,7 @@ const Applicant: React.FC<Props> = ({ userId, name, email, phone, location, jobR
                     <Typography marginLeft={3} marginTop={5} fontSize={18} fontWeight={500}>
                         Change Status
                     </Typography>
-                    <Select value={status} onChange={handleStatusChange} sx={{ marginLeft: 3, marginTop: 2,width:180,height:40 }}>
+                    <Select value={status} onChange={handleStatusChange} sx={{ marginLeft: 3, marginTop: 2,width:100,height:40 }}>
                         <MenuItem value="Approved">Approved</MenuItem>
                         <MenuItem value="Rejected">Rejected</MenuItem>
                     </Select>

@@ -3,7 +3,7 @@ import { Box, TextField, Button, Avatar, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import validationSchema from './validation/Profileformvalidation';
 import { useNavigate } from 'react-router-dom';
-  import Axios from '../../axios/axios.ts';
+import Axios from '../../axios/axios.ts';
 import { useSelector } from "react-redux";
 import axios from '../utils/axios.ts'
 
@@ -33,7 +33,7 @@ interface MyFormData {
   about: string;
   personalWebsite: string;
   education: string;
-  language: string; 
+  language: string;
   jobRole: string;
   location: string;
   cv: File | null;
@@ -45,8 +45,8 @@ interface MyFormData {
 function Profileform() {
   const navigate = useNavigate();
   const userdata = useSelector((state: RootState) => state.user.value);
-  console.log(userdata,"profile");
-  
+  console.log(userdata, "profile");
+
 
 
   const formik = useFormik({
@@ -65,82 +65,78 @@ function Profileform() {
 
     } as MyFormData,
     validationSchema: validationSchema,
-    onSubmit:async (values) => {
+    onSubmit: async (values) => {
       const fileimg = values.image;
-  const filecv = values.cv;
+      const filecv = values.cv;
+      if (!filecv) {
+        formik.setFieldError('cv', 'CV is required');
+      }
+      if (!fileimg) {
+        formik.setFieldError('image', 'Image is required');
+      }
 
-  console.log(fileimg, filecv);
+      try {
+        const [imageResponse, cvResponse] = await Promise.all([
+          Axios.get('/s3service'),
+          Axios.get('/s3service'),
+        ]);
 
-  try {
-    const [imageResponse, cvResponse] = await Promise.all([
-      Axios.get('/s3service'),
-      Axios.get('/s3service'),
-    ]);
+        const imageUrl = imageResponse.data.response;
+        const cvUrl = cvResponse.data.response;
 
-    const imageUrl = imageResponse.data.response;
-    const cvUrl = cvResponse.data.response;
+        const imageUpload = fetch(imageUrl, {
+          method: 'PUT',
+          body: fileimg,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
 
-    console.log(imageUrl, cvUrl);
+        const cvUpload = fetch(cvUrl, {
+          method: 'PUT',
+          body: filecv,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
 
-    const imageUpload = fetch(imageUrl, {
-      method: 'PUT',
-      body: fileimg,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+        const [imageUploadResponse, cvUploadResponse] = await Promise.all([imageUpload, cvUpload]);
 
-    const cvUpload = fetch(cvUrl, {
-      method: 'PUT',
-      body: filecv,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+        const userimage = imageUrl.split('?')[0];
+        const usercv = cvUrl.split('?')[0];
+        formik.setFieldValue('usercv', usercv);
+        formik.setFieldValue('userimage', userimage);
 
-    const [imageUploadResponse, cvUploadResponse] = await Promise.all([imageUpload, cvUpload]);
+        const body = {
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          about: values.about,
+          personalWebsite: values.personalWebsite,
+          education: values.education,
+          language: values.language,
+          jobRole: values.jobRole,
+          location: values.location,
+          cv: usercv,
+          image: userimage,
+          userId: userdata.id,
+        };
 
-    console.log('Image and CV uploaded successfully:', imageUploadResponse, cvUploadResponse);
+        console.log(body);
 
-    const userimage = imageUrl.split('?')[0];
-    const usercv = cvUrl.split('?')[0];
-    console.log(userimage);
-    console.log(usercv);
-    formik.setFieldValue('usercv', usercv);
-    formik.setFieldValue('userimage', userimage);
+        const response = await axios.post('/profile/addprofile', body);
 
-    const body = {
-      name: values.name,
-      email: values.email,
-      phone: values.phone,
-      about: values.about,
-      personalWebsite: values.personalWebsite,
-      education: values.education,
-      language: values.language,
-      jobRole: values.jobRole,
-      location: values.location,
-      cv: usercv,
-      image: userimage,
-      userId: userdata.id,
-    };
-
-    console.log(body);
-
-    const response = await axios.post('/profile/addprofile', body);
-
-    console.log(response);
-
-    if (response.data.status === true) {
-      
-
-      navigate("/user/profile")
-    }
-  } catch (error) {
-    console.error('Error uploading image and CV:', error);
-  }
+        if (response.data.status === true) {
 
 
-    
+          navigate("/user/profile")
+        }
+      } catch (error) {
+        console.error('Error uploading image and CV:', error);
+      }
+
+
+
 
 
 
@@ -194,9 +190,10 @@ function Profileform() {
             name="image"
             type="file"
             autoFocus
-            onChange={handleImageChange} // Handle file selection
-            error={formik.touched.image && Boolean(formik.errors.image)}
-            helperText={formik.touched.image && formik.errors.image}
+            onChange={handleImageChange}
+            error={(formik.touched.image || formik.submitCount > 0) && Boolean(formik.errors.image)}
+            helperText={(formik.touched.image || formik.submitCount > 0) && formik.errors.image}
+            onBlur={formik.handleBlur}
           />
           <TextField
             margin="normal"
@@ -351,9 +348,10 @@ function Profileform() {
             type="file"
             autoComplete="cv"
             autoFocus
-            onChange={handleCVChange} // Handle file selection
-            error={formik.touched.cv && Boolean(formik.errors.cv)}
-            helperText={formik.touched.cv && formik.errors.cv}
+            onChange={handleCVChange}
+            error={(formik.touched.cv || formik.submitCount > 0) && Boolean(formik.errors.cv)}
+            helperText={(formik.touched.cv || formik.submitCount > 0) && formik.errors.cv}
+            onBlur={formik.handleBlur}
           />
           {/* Submit button */}
           <Button
@@ -361,7 +359,7 @@ function Profileform() {
             variant="contained"
             sx={{ mt: 3, mb: 2, height: 60, width: '60%', backgroundColor: '#131392', ml: 20 }}
           >
-            Submit 
+            Submit
           </Button>
         </div>
       </Box>

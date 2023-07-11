@@ -66,15 +66,7 @@ const Jobdatas: React.FC<Props> = ({ jobId, jobtitle, jobType, location, salary,
         <Box marginLeft={1} sx={{ width: 300, height: 'auto', borderRadius: 2, boxShadow: 6, backgroundColor: "white", marginBottom: 3 }} >
             <Stack >
                 <Stack direction={'row'}>
-                    {/* <Avatar
-                        alt=""
-                        src={image}
-                        sx={{ width: 50, height: 50, marginTop: -2, marginLeft: 1.5 }}
-                    />
-
-                    <Typography marginLeft={2} marginTop={2} fontSize={16} fontWeight={500} width={100}>
-                    {companyname}
-                    </Typography> */}
+                  
                     <Typography marginLeft={5} marginTop={2.5} fontSize={12} fontWeight={500}>
                         {location}
                     </Typography>

@@ -7,6 +7,9 @@ import Applicant from '../components/Applicant'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import recruiterapi from '../utils/axios.ts';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Background from '../components/Background';
 
 type User = {
   _id: string;
@@ -29,13 +32,13 @@ type User = {
 function Applicantsdetails() {
   const [users, setUsers] = useState<User[]>([]);
   const { jobId } = useParams();
-  console.log(jobId, "applicants");
-
+  const theme = useTheme();
+  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));    
+  
   useEffect(() => {
     recruiterapi
       .get('/jobs/applicants?id=' + jobId)
       .then((response) => {
-        console.log(response.data.jobapplicants);
         setUsers(response.data.jobapplicants)
       })
       .catch((error) => {
@@ -43,15 +46,32 @@ function Applicantsdetails() {
       });
   }, [jobId]);
  
-  console.log(users,"sdasfsfsfe");
   
 
   return (
     <Box>
+      <Stack>
+
       <Header />
-      <Stack direction={'row'} spacing={2} marginTop={15}>
+      <Background/>
+      <Box
+          sx={{
+            width: '95%',
+            height: 'auto',
+            borderRadius: 6,
+            backgroundColor: 'white',
+            marginLeft: 5,
+            marginTop: 40,
+            boxShadow: 6,
+            zIndex: 1,
+            '@media (max-width: 800px)': {
+              width: 850, marginTop: 30, marginLeft: 2
+            },
+          }}
+        >
+          <Stack direction={isMobile?'column':'row'} spacing={2} marginTop={15}>
         <SideBar />
-        <Box sx={{ width: "78%", height: 'auto', borderRadius: 2 }}>
+        <Box sx={{ width:isMobile?"95%": "78%", height: 'auto', borderRadius: 2 }}>
           {users.length === 0 ? (
             <Typography variant="h5" align="center" mt={4}>
               No applicants found
@@ -79,6 +99,13 @@ function Applicantsdetails() {
           )}
         </Box>
       </Stack>
+
+        </Box>
+
+      </Stack>
+    
+      
+      
       <Footer />
     </Box>
   )

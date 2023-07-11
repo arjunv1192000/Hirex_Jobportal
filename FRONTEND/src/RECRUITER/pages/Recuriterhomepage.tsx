@@ -9,6 +9,8 @@ import Dashboard from '../components/Dashboard';
 import { useEffect, useState } from 'react';
 import recruiterapi from '../utils/axios.ts';
 import { useSelector } from 'react-redux';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type RootState = {
   recruiter: {
@@ -32,6 +34,8 @@ type Job = {
 function RecruiterHomepage() {
   const recruiterData = useSelector((state: RootState) => state.recruiter.value);
   const id = recruiterData.id;
+  const theme = useTheme();
+  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [jobs, setJobs] = useState<Job[]>([]);
 
@@ -40,7 +44,6 @@ function RecruiterHomepage() {
     recruiterapi
       .get('/jobs/getrecruiterjob?id=' + id)
       .then((response) => {
-        console.log(response.data.jobs);
         setJobs(response.data.jobs);
       })
       .catch((response) => {
@@ -69,11 +72,14 @@ function RecruiterHomepage() {
             marginTop: 40,
             boxShadow: 6,
             zIndex: 1,
+            '@media (max-width: 800px)': {
+              width: 1000, marginTop: 30, marginLeft: 3
+            },
           }}
         >
-          <Stack direction={'row'} spacing={2} marginTop={10}>
+          <Stack direction={isMobile?'column':'row'} spacing={isMobile?4:2} marginTop={10}>
             <SideBar />
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ padding: 1 }}>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ padding:isMobile?10:1 }}>
               {jobs.length === 0 ? (
                 <Box sx={{ textAlign: 'center', mt: 2, marginTop: 20, marginLeft: 60 }}>
                   <Typography variant="h6">No jobs found.</Typography>

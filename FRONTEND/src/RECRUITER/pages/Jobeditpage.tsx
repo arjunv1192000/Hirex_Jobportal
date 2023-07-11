@@ -5,22 +5,20 @@ import SideBar from '../components/Sidebar'
 import Updatejob from '../components/Updatejob'
 
 import { Box, Stack } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function Jobeditpage() {
+    const theme = useTheme();
+    const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));  
+
     return (
 
         <Box>
             <Header />
-            <Stack direction={'row'} spacing={2} marginTop={10}  >
+            <Stack direction={isMobile?'column':'row'} spacing={6} marginTop={10}  >
                 <SideBar />
                 <Updatejob/>
-
-                
-
-
-
-
-
 
             </Stack>
             <Footer />

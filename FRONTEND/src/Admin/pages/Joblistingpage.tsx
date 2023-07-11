@@ -41,7 +41,6 @@ function Joblistingpage() {
         axios
             .get('/getrecruiterjobs?id=' + recruiterId)
             .then((response) => {
-                console.log(response.data.jobdata);
                 setJobs(response.data.jobdata);
             })
             .catch((error) => {

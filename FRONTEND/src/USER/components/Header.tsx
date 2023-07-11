@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -31,20 +32,15 @@ type RootState = {
   };
 };
 
-
-
-
 function ResponsiveAppBar() {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userdata = useSelector((state: RootState) => state.user.value);
- 
+
   const pages = ['HOME', 'JOBS', 'PROFILE'];
-  const settings = userdata.id ? [userdata.name,'Profile', 'Logout'] : ['Login'];
-
-
+  const settings = userdata.id ? [userdata.name, 'Profile', 'Logout'] : ['Login'];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -52,26 +48,27 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-
-
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const handleCloseUserMenu = () => {
+
+  const handleLogout = () => {
     dispatch(logout());
     navigate('/user/login');
+    handleCloseUserMenu();
   };
 
-
-
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   return (
-    <AppBar position="fixed" sx={{ marginTop: 3, backgroundColor: 'white', width: "90%", marginRight:isMobile?5: 10, borderRadius: 3 }} >
+    <AppBar position="fixed" sx={{ marginTop: 3, backgroundColor: 'white', width: "90%", marginRight: isMobile ? 5 : 10, borderRadius: 3 }}>
       <Container maxWidth="xl" >
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -123,12 +120,13 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} >
+                <MenuItem key={page}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -148,6 +146,7 @@ function ResponsiveAppBar() {
           >
             HireX
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -193,7 +192,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={setting === 'Logout' ? handleLogout : handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -204,4 +203,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;

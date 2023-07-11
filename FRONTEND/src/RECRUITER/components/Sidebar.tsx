@@ -12,6 +12,8 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import recruiterapi from '../utils/axios.ts';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type RootState = {
   recruiter: {
@@ -30,6 +32,8 @@ function SideBar() {
   const navigate = useNavigate();
   const [selectedButton, setSelectedButton] = useState('');
   const [recruiter, setrecruiter] = useState<any>()
+  const theme = useTheme();
+  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
   const recruiterdata = useSelector((state: RootState) => state.recruiter.value);
   const recruiterId = recruiterdata.id
@@ -44,7 +48,7 @@ function SideBar() {
       recruiterapi.get('/getrecruiterdata?id=' + recruiterId)
         .then((response) => {
           setrecruiter(response.data.recruiterdata)
-          console.log(response.data.recruiterdata);
+       
 
 
 
@@ -65,13 +69,13 @@ function SideBar() {
 
 
   return (
-    <Box marginLeft={2} sx={{ width: 300, height: 500, borderRadius: 2, marginTop: 2 }}>
-      <Box sx={{ borderRadius: 2, boxShadow: 6, width: 300, height: 450 }}>
+    <Box marginLeft={2} sx={{ width:isMobile ? '70%' : 300, height: isMobile ? 400 :  500, borderRadius: 2, marginTop: 2 }}>
+      <Box sx={{ borderRadius: 2, boxShadow: 6, width:  isMobile ? '100%' : 300, height:isMobile ? 420 :  450,marginLeft:isMobile?15:0 }}>
         <Stack>
           <Avatar
             alt=""
             src={recruiter?.image}
-            sx={{ width: 80, height: 80, marginTop: 4, marginLeft: 13 }}
+            sx={{ width: 80, height: 80, marginTop: 4, marginLeft:isMobile?38: 13 }}
           />
           <Typography textAlign={'center'} marginTop={1} fontSize={16} fontWeight={500}>
             {recruiter?.name}
@@ -87,11 +91,11 @@ function SideBar() {
             <Button
               variant="contained"
               sx={{
-                width: 200,
+                width:  isMobile ? '50%' : 200,
                 borderRadius: 2,
                 alignContent: 'center',
-                marginLeft: 6,
-                marginTop: 3,
+                marginLeft:isMobile ? 20: 6,
+                marginTop:  isMobile ? 2 : 3,
                 backgroundColor: '#3C6FF5',
               }}
               onClick={() => navigate('/recruiter/updateprofile')}
@@ -102,11 +106,11 @@ function SideBar() {
             <Button
               variant="contained"
               sx={{
-                width: 200,
+                width: isMobile ? '50%' : 200,
                 borderRadius: 2,
                 alignContent: 'center',
-                marginLeft: 6,
-                marginTop: 3,
+                marginLeft: isMobile ? 20: 6,
+                marginTop:  isMobile ? 2 : 3,
                 backgroundColor: '#3C6FF5',
               }}
               onClick={() => navigate('/recruiter/addprofile')}

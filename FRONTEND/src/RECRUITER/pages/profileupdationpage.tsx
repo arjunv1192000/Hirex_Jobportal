@@ -11,7 +11,9 @@ function profileupdationpage() {
     <Stack>
       <Header/>
       <Background/>
-      <Box sx={{ width: "90%", height: 'auto', borderRadius: 6, backgroundColor: 'white', marginLeft:10, marginTop:40, boxShadow: 6, zIndex: 1 }}>
+      <Box sx={{ width: "90%", height: 'auto', borderRadius: 6, backgroundColor: 'white', marginLeft:10, marginTop:40, boxShadow: 6, zIndex: 1, '@media (max-width: 800px)': {
+              width: 700, marginTop: 30, marginLeft: 2
+            }, }}>
         <Profileupdationform />
        
       </Box>

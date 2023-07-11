@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Box, Stack, Typography } from '@mui/material';
-import Footer from '../../USER/components/Footer';
+
 import Background from '../../USER/components/Background';
 import Conversation from '../components/Conversation';
 import Chatbox from '../components/Chatbox';
@@ -8,6 +8,9 @@ import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import chatAPI from '../utils/axios';
 import { io} from 'socket.io-client';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 type RootState = {
     recruiter: {
@@ -47,6 +50,9 @@ type RootState = {
 
 
 function Chatpage() {
+
+  const theme = useTheme();
+  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     const Id = useSelector((state: RootState) =>state?.user && state?.user?.value?.id || state?.recruiter && state?.recruiter?.value.id );
    
@@ -106,7 +112,6 @@ function Chatpage() {
 
     useEffect(()=>{
       socket.current.on('receive-message', (data:any) => {
-        console.log("hellooooo");
         
         setReceiveMessage(data);
       });
@@ -143,9 +148,9 @@ function Chatpage() {
         <Box >
             <Stack direction={'column'}  >
                 <Background />
-                <Box sx={{ width: "95%", height: 900, borderRadius: 6, backgroundColor: 'white', marginLeft: 5, marginTop: 40, boxShadow: 6, zIndex: 1 }}>
+                <Box sx={{ width:isMobile?900: "95%", height: 900, borderRadius: 6, backgroundColor: 'white', marginLeft:isMobile?3:5, marginTop: 40, boxShadow: 6, zIndex: 1 }}>
                     <Stack direction={'row'}>
-                        <Box sx={{ width: "20%", height: 800, borderRadius: 6, backgroundColor: 'white', marginLeft: 5, boxShadow: 6, marginTop: 5 }}>
+                        <Box sx={{ width:isMobile?250: "20%", height: 800, borderRadius: 6, backgroundColor: 'white', marginLeft: 5, boxShadow: 6, marginTop: 5 }}>
                             <Typography textAlign={'center'} marginTop={1} fontSize={24} fontWeight={500}>
                                 Chats
 
@@ -177,7 +182,7 @@ function Chatpage() {
 
 
 
-                <Footer />
+                
             </Stack>
 
 

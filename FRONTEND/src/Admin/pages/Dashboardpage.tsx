@@ -31,7 +31,6 @@ function Dashboardpage() {
 
     axios.get('/dashboarddata')
       .then((response) => {
-        console.log(response.data, "alldata");
         setdata(response.data);
       })
       .catch((response) => {
@@ -42,7 +41,6 @@ function Dashboardpage() {
 
     axios.get('/graphdata')
       .then((response) => {
-        console.log(response.data, "graphdata");
         setgraphdata(response.data?.jobdata);
       })
       .catch((response) => {
@@ -70,11 +68,6 @@ function Dashboardpage() {
         <Box sx={{ width: "95%", height: 'auto', borderRadius: 6, backgroundColor: 'white', marginLeft: 5, marginTop: 40, boxShadow: 6, zIndex: 1 }}>
           <Stack direction={'column'}>
             <Dashboard user={data.user} recruiter={data.recruiter} jobs={data.jobs} />
-
-            {/* {graphdata.map((e)=>
-
-              <p>{e.companyname}</p>
-            )} */}
             <Graph data={graphdata} />
 
           </Stack>
